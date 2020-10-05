@@ -475,6 +475,7 @@ class QueryCollector extends PDOCollector
                 'backtrace' => array_values($query['source']),
                 'duration' => $query['time'],
                 'duration_str' => ($query['type'] == 'transaction') ? '' : $this->formatDuration($query['time']),
+                'duration_is_slow' => (isset($query['time'])  && $query['time'] > 1) ? 1 : 0,
                 'stmt_id' => $this->getDataFormatter()->formatSource(reset($query['source'])),
                 'connection' => $query['connection'],
             ];

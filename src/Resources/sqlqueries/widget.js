@@ -66,7 +66,11 @@
                     $('<code />').addClass(csscls('sql')).html(PhpDebugBar.Widgets.highlight(stmt.sql, 'sql')).appendTo(li);
                 }
                 if (stmt.duration_str) {
-                    $('<span title="Duration" />').addClass(csscls('duration')).text(stmt.duration_str).appendTo(li);
+                    if(stmt.duration_is_slow == 1){
+                        $('<span title="Duration" />').addClass(csscls('duration')).text(stmt.duration_str).appendTo(li);
+                    }else{
+                        $('<span title="Duration" />').addClass(csscls('duration')).html('<font style="color:red">'+stmt.duration_str+'</font>').appendTo(li);
+                    }
                 }
                 if (stmt.memory_str) {
                     $('<span title="Memory usage" />').addClass(csscls('memory')).text(stmt.memory_str).appendTo(li);
