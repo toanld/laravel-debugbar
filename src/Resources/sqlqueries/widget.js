@@ -60,6 +60,7 @@
             var filters = [], self = this;
 
             this.$list = new PhpDebugBar.Widgets.ListWidget({ itemRenderer: function (li, stmt) {
+                console.log(stmt);
                 if (stmt.type === 'transaction') {
                     $('<strong />').addClass(csscls('sql')).addClass(csscls('name')).text(stmt.sql).appendTo(li);
                 } else {
