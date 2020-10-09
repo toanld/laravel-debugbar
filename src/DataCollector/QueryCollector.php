@@ -472,7 +472,7 @@ class QueryCollector extends PDOCollector
                 'bindings' => $query['bindings'],
                 'hints' => $query['hints'],
                 'show_copy' => $query['show_copy'],
-                'backtrace' => array_values($query['source']),
+                'backtrace' => $query['source'],
                 'duration' => $query['time'],
                 'duration_str' => ($query['type'] == 'transaction') ? '' : $this->formatDuration($query['time']),
                 'duration_is_slow' => (isset($query['time'])  && $query['time'] > 1) ? 1 : 0,
