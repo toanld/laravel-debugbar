@@ -62,12 +62,12 @@
             this.$list = new PhpDebugBar.Widgets.ListWidget({ itemRenderer: function (li, stmt) {
                 console.log(stmt);
                 if (stmt.type === 'transaction') {
-                    $('<strong />').addClass(csscls('sql')).addClass(csscls('name')).text(stmt.sql+stmt.backtrace_source).appendTo(li);
+                    $('<strong />').addClass(csscls('sql')).addClass(csscls('name')).text(stmt.sql).appendTo(li);
                 } else {
-                    $('<code />').addClass(csscls('sql')).html(PhpDebugBar.Widgets.highlight(stmt.sql+stmt.backtrace_source, 'sql')).appendTo(li);
+                    $('<code />').addClass(csscls('sql')).html(PhpDebugBar.Widgets.highlight(stmt.sql, 'sql')).appendTo(li);
                 }
                 if (stmt.duration_str) {
-                    if(stmt.duration_is_slow == 1){
+                    if(stmt.duration < 0.1){
                         $('<span title="Duration" />').addClass(csscls('duration')).text(stmt.duration_str).appendTo(li);
                     }else{
                         $('<span title="Duration" />').addClass(csscls('duration')).html('<font style="color:red">'+stmt.duration_str+'</font>').appendTo(li);
